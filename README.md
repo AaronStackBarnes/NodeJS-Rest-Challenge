@@ -2,12 +2,12 @@
 
 Write a NodeJS service using the express framework (or a derivative) that implements a set of RESTful style interfaces to:
 
-- create address records containing a name, street, city, state, and country
-- returning a unique key for each address record
-- check that the state is valid for the country using an external REST service http://www.groupkt.com/post/f2129b88/free-restful-web-services-to-consume-and-test.htm
-- note the URL for the API has changed to the domain www.groupkt.com instead of services.groupkt.com
-- update and delete individual address records
-- list all the stored address records for a given state and country
+[x] create address records containing a name, street, city, state, and country
+[x] returning a unique key for each address record
+[] check that the state is valid for the country using an external REST service http://www.groupkt.com/post/f2129b88/free-restful-web-services-to-consume-and-test.htm
+[] note the URL for the API has changed to the domain www.groupkt.com instead of services.groupkt.com
+roupkt.com/post/f2129b88/free-restful-web-services-to-consume-and-test.htm- update and delete individual address records
+[] list all the stored address records for a given state and country
 
 ## design philosophy
 

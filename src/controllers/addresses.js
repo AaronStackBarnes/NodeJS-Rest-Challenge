@@ -24,8 +24,20 @@ module.exports.addresses = {
     }
   },
   create: async (req, res) => {
-    console.log('BUILD ME PLEASE');
-    res.status(500).json({error: 'BUILD ME PLEASE'});
+    try {
+      let address = new Address({
+        street: req.body.street,
+        zip: req.body.zip,
+        country: req.body.country,
+        state: req.body.state,
+        city: req.body.city,
+      });
+      await address.isValid();
+      await address.save();
+      res.status(200).json({id: address._id});
+    } catch (error) {
+      res.status(500).json({error: error});
+    }
   },
   edit: async (req, res) => {
     console.log('BUILD ME PLEASE');

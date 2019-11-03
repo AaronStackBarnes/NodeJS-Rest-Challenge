@@ -5,10 +5,16 @@ const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const {MONGO_URI, PORT} = require('./src/constants').config;
+const {addresses} = require('./src/controllers');
+
 const app = express();
 
 (async () => {
-  await mongoose.connect(MONGO_URI, {useNewUrlParser: true});
+  await mongoose.connect(MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
