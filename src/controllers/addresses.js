@@ -6,13 +6,18 @@ module.exports.addresses = {
   get: async (req, res) => {
     let pageNumber = parseInt(req.query.pageNumber) || 0;
     let nPerPage = parseInt(req.query.nPerPage) || 50;
+    let query = {};
+
+    if (req.query.state) {
+      query.state = req.query.state;
+    }
+
+    if (req.query.country) {
+      query.country = req.query.country;
+    }
+
     try {
-      let addresses = await Address.find(
-        {},
-        {
-          _id: 1,
-        },
-      )
+      let addresses = await Address.find(query)
         .sort({updatedAt: -1})
         .skip(pageNumber > 0 ? (pageNumber - 1) * nPerPage : 0)
         .limit(nPerPage)
