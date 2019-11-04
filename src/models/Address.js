@@ -22,11 +22,12 @@ AddressSchema.methods.isValid = async function() {
       return reject(regexErrors);
     }
 
-    // let stateToCountryError = await addressValidation.matchStateToCountry(this.country, this.state)
-    //  if (stateToCountryError) {
-    //  return reject(stateToCountryError);
-    //  }
-    resolve();
+    try {
+      await addressValidation.matchStateToCountry(this.country, this.state);
+      return resolve();
+    } catch (e) {
+      return reject(e);
+    }
   });
 };
 

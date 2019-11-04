@@ -37,6 +37,7 @@ module.exports.addresses = {
         state: req.body.state,
         city: req.body.city,
       });
+
       await address.isValid();
       await address.save();
       res.status(200).json({id: address._id});

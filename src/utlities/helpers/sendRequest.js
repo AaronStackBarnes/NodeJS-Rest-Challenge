@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const https = require("https");
+const http = require('http');
 /*
 const options = {
   hostname: "flaviocopes.com",
@@ -14,23 +14,23 @@ const options = {
 */
 module.exports.sendRequest = (options, data) => {
   return new Promise(function(resolve, reject) {
-    const req = https.request(options, resp => {
-      let result = "";
+    const req = http.request(options, resp => {
+      let result = '';
 
       // A chunk of data has been recieved.
-      resp.on("data", chunk => {
+      resp.on('data', chunk => {
         result += chunk;
       });
 
       // The whole response has been received. Print out the result.
-      resp.on("end", () => {
+      resp.on('end', () => {
         resolve(JSON.parse(result));
       });
     });
 
-    req.on("error", err => {
+    req.on('error', err => {
       console.log(err.message);
-      reject("Error: " + err.message);
+      reject('Error: ' + err.message);
     });
 
     if (data) {
