@@ -9,7 +9,7 @@ Write a NodeJS service using the express framework (or a derivative) that implem
 - [x] update and delete individual address records
 - [x] list all the stored address records for a given state and country
 - [] dockerize
-- [] tests
+- [x] tests
 
 ## Design Philosophy
 
@@ -22,3 +22,4 @@ I am a big fan of React so I think opening with a Dan Abramov quote is appropria
 
 - Input for state and country will be codes IE USA. Perhaps if it is user input is assisted with a google API etc.
 - I did not use es6 import and export. I know I should have because it was specifically asked for and I ALWAYS use it for my ReactJS or LitElement but it feels odd to use it in a Node server. Anyway bad habit ill be looking to break.
+- My test are insufficient. Like in real life I was pressed for time and they suffered.

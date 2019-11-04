@@ -23,12 +23,17 @@ module.exports.addresses = {
         _id: req.params.id,
       };
     }
+
     try {
       let addresses = await Address.find(query)
         .sort({updatedAt: -1})
         .skip(pageNumber > 0 ? (pageNumber - 1) * nPerPage : 0)
         .limit(nPerPage)
         .exec();
+
+      if (!addresses) {
+        return res.sendStatus(404);
+      }
 
       res.status(200).json({addresses: addresses});
     } catch (error) {
@@ -53,9 +58,28 @@ module.exports.addresses = {
   },
   edit: async (req, res) => {
     try {
-      await Address.findOneAndUpdate({_id: req.params.id}, req.body, {
-        useFindAndModify: false,
-      }).exec();
+      let address = await Address.findOne({_id: req.params.id}).exec();
+      if (!address) {
+        return res.sendStatus(404);
+      }
+
+      if (req.body.street) {
+        address.street = req.body.street;
+      }
+      if (req.body.zip) {
+        address.zip = req.body.zip;
+      }
+      if (req.body.country) {
+        address.country = req.body.country;
+      }
+      if (req.body.state) {
+        address.state = req.body.state;
+      }
+      if (req.body.city) {
+        address.city = req.body.city;
+      }
+
+      await address.save();
 
       res.sendStatus(200);
     } catch (error) {

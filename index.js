@@ -32,3 +32,5 @@ const app = express();
     console.log(`App listening on port ${PORT}`),
   );
 })();
+
+module.exports = app;
