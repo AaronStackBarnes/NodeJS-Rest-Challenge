@@ -16,6 +16,13 @@ module.exports.addresses = {
       query.country = req.query.country;
     }
 
+    if (req.params.id) {
+      // this feels like it can be improved maybe this should be two seprate controllers but
+      // I want to make sure if we have an ID none of the other params matter.
+      query = {
+        _id: req.params.id,
+      };
+    }
     try {
       let addresses = await Address.find(query)
         .sort({updatedAt: -1})
@@ -46,16 +53,22 @@ module.exports.addresses = {
   },
   edit: async (req, res) => {
     try {
-      await Address.findOneAndUpdate({id: req.params.id}, req.body).exec();
+      await Address.findOneAndUpdate({_id: req.params.id}, req.body, {
+        useFindAndModify: false,
+      }).exec();
+
+      res.sendStatus(200);
     } catch (error) {
       res.status(500).json({error: error});
     }
   },
   remove: async (req, res) => {
     try {
-      await Address.findOne({id: req.params.id})
+      await Address.findOne({_id: req.params.id})
         .remove()
         .exec();
+
+      res.sendStatus(200);
     } catch (error) {
       res.status(500).json({error: error});
     }
