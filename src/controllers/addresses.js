@@ -38,7 +38,6 @@ module.exports.addresses = {
         city: req.body.city,
       });
 
-      await address.isValid();
       await address.save();
       res.status(200).json({id: address._id});
     } catch (error) {
@@ -46,11 +45,19 @@ module.exports.addresses = {
     }
   },
   edit: async (req, res) => {
-    console.log('BUILD ME PLEASE');
-    res.status(500).json({error: 'BUILD ME PLEASE'});
+    try {
+      await Address.findOneAndUpdate({id: req.params.id}, req.body).exec();
+    } catch (error) {
+      res.status(500).json({error: error});
+    }
   },
   remove: async (req, res) => {
-    console.log('BUILD ME PLEASE');
-    res.status(500).json({error: 'BUILD ME PLEASE'});
+    try {
+      await Address.findOne({id: req.params.id})
+        .remove()
+        .exec();
+    } catch (error) {
+      res.status(500).json({error: error});
+    }
   },
 };

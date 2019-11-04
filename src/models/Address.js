@@ -12,10 +12,9 @@ var AddressSchema = new mongoose.Schema({
   city: {type: String, required: true},
   updatedAt: {type: Date, default: Date.now},
 });
-
-AddressSchema.methods.isValid = async function() {
+AddressSchema.pre('save', async function() {
   return new Promise(async (resolve, reject) => {
-    //NOTE: I dont like this pattern it feels very WET if the  server every grew in complexity I would look at a possible refactor here.
+    //NOTE: I dont like this pattern it feels very WET if the server every grew in complexity I would look at a possible refactor here.
 
     let regexErrors = addressValidation.regexTesting(this);
     if (regexErrors.length) {
@@ -29,6 +28,6 @@ AddressSchema.methods.isValid = async function() {
       return reject(e);
     }
   });
-};
+});
 
 module.exports.Address = mongoose.model('Address', AddressSchema);

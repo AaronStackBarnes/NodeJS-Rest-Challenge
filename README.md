@@ -4,9 +4,9 @@ Write a NodeJS service using the express framework (or a derivative) that implem
 
 - [x] create address records containing a name, street, city, state, and country
 - [x] returning a unique key for each address record
-- [] check that the state is valid for the country using an external REST service http://www.groupkt.com/post/f2129b88/free-restful-web-services-to-consume-and-test.htm
-- [] note the URL for the API has changed to the domain www.groupkt.com instead of services.groupkt.com groupkt.com/post/f2129b88/free-restful-web-services-to-consume-and-test.htm
-- [] update and delete individual address records
+- [x] check that the state is valid for the country using an external REST service http://www.groupkt.com/post/f2129b88/free-restful-web-services-to-consume-and-test.htm
+- [x] note the URL for the API has changed to the domain www.groupkt.com instead of services.groupkt.com groupkt.com/post/f2129b88/free-restful-web-services-to-consume-and-test.htm
+- [x] update and delete individual address records
 - [x] list all the stored address records for a given state and country
 - [] dockerize
 - [] tests
