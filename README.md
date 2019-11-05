@@ -23,7 +23,8 @@ to run tests after installing docker compose run `docker-compose  -f docker-comp
 ## cURLs
 
 POST
-`
+
+```
 curl -X POST \
   http://localhost:8080/addresses \
   -H 'Accept: */*' \
@@ -42,16 +43,19 @@ curl -X POST \
 	"state": "NY",
 	"city": "NYC"
 }'
-`
+```
 
 GET
-`
+
+```
 curl -X GET \
   http://localhost:8080/addresses \
   -H 'cache-control: no-cache'
-`
+```
+
 PUT
-`
+
+```
 curl -X PUT \
   http://localhost:8080/addresses/<ID> \
   -H 'Content-Type: application/json' \
@@ -59,20 +63,22 @@ curl -X PUT \
   -d '{
 	"street": "9"
 }'
-`
+```
 
 DELETE
-`
+
+```
 curl -X DELETE \
   http://localhost:8080/addresses/5dc07a3b39724243de7f7fb2 \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache'
-`
+```
 
 POST
 > this will fail because of state country mismatch
 > it would also fail as a PUT
-`
+
+```
 curl -X POST \
   http://localhost:8080/addresses \
   -H 'Accept: */*' \
@@ -90,7 +96,7 @@ curl -X POST \
 	"state": "NY",
 	"city": "NYC"
 }'
-`
+```
 
 ## Design Philosophy
 
