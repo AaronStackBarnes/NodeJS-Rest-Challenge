@@ -11,9 +11,13 @@ const {addresses} = require('./src/controllers');
 const app = express();
 
 (async () => {
-  await mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
+  await mongoose.connect(MONGO_URI , {
     useUnifiedTopology: true,
+    useNewUrlParser: true,
+    reconnectTries: 5000,
+    reconnectInterval: 0,
+    socketTimeoutMS: 100000,
+    connectTimeoutMS: 100000,
   });
 
   app.use(bodyParser.urlencoded({extended: true}));

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const {MONGO_URI} = require('../src/constants');
+const {TEST_MONGO_URI} = require('../src/constants').config;
 
-mongoose.connect('mongodb://localhost/paperspaceTests', {
+mongoose.connect(TEST_MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
